@@ -2,31 +2,56 @@
    1. STYLE GLOBAL DE LA PAGE (BODY)
    ========================================== */
 body {
-    background-color: #f7f9fa; /* Fond gris très clair et moderne */
-    font-family: Arial, Helvetica, sans-serif; /* Police droite et lisible */
-    padding: 40px; /* Espace tout autour de la page pour qu'elle respire */
+    background-color: #f7f9fa; /* Fond gris très clair moderne */
+    font-family: Arial, Helvetica, sans-serif; /* Écriture droite style Thumbtack */
+    padding: 40px; /* Espace de respiration sur les côtés de l'écran */
     margin: 0;
 }
 
 /* ==========================================
-   2. MENU DE NAVIGATION (LIENS DU HAUT)
+   2. BARRE DE NAVIGATION (NAVBAR)
    ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pousse le logo à gauche et les liens à droite */
+    align-items: center;            /* Aligne verticalement les éléments */
+    margin-bottom: 15px;
+}
+
+.logo-text {
+    font-weight: 800;       /* Logo en gras et épais */
+    font-size: 24px;        
+    color: #111e25;         /* Couleur bleu-noir très foncé officiel */
+}
+
 .menu-link {
-    color: #676d73;        /* Un joli gris doux et moderne comme sur votre image */
-    text-decoration: none; /* Enlève le trait souligné d'origine */
-    margin-left: 24px;     /* Espace propre entre chaque lien */
-    font-weight: normal;   /* <-- ON RETIRE LE GRAS (Écriture fine comme Thumbtack) */
+    color: #676d73;        /* Gris doux très élégant */
+    text-decoration: none; /* Enlève le trait souligné */
+    margin-left: 24px;     /* Espace entre chaque lien */
+    font-weight: normal;   /* Écriture fine haut de gamme */
 }
 
-
-
-/* Effet de survol sur les liens du menu */
 .menu-link:hover {
-    color: #0050a1;            /* Devient bleu foncé au survol */
-    text-decoration: underline; /* Le soulignement apparaît au survol */
+    color: #111e25;            /* Devient foncé au survol de la souris */
+    text-decoration: underline; /* Le trait réapparaît discrètement au survol */
 }
 
-/* Ligne de séparation sous le menu */
+#signup-nav-btn {
+    background-color: #f2f7fc; /* Fond bleu-gris très clair */
+    color: #0073ea;            /* Texte écrit en bleu vif */
+    border: none;              
+    padding: 8px 18px;         
+    font-weight: bold;         
+    font-size: 15px;
+    border-radius: 20px;       /* Forme capsule ovale très arrondie */
+    margin-left: 20px;         
+    cursor: pointer;           
+}
+
+#signup-nav-btn:hover {
+    background-color: #e1eefc; /* Devient un chouïa plus foncé au survol */
+}
+
 hr {
     border: 0;
     height: 1px;
@@ -35,114 +60,72 @@ hr {
 }
 
 /* ==========================================
-   3. SECTION PRINCIPALE (HERO CONTAINER)
+   3. SECTION PRINCIPALE (IMAGE COMPACTE AVEC TEXTE)
    ========================================== */
 .hero-container {
     background-image: url("./salon.jpg");
-    background-size: cover;       /* L'image s'ajuste pour remplir la boîte */
-    background-position: center;  /* L'image reste bien centrée */
-    padding: 60px 40px;           /* Espace intérieur pour le texte */
-    border-radius: 12px;          /* Arrondit proprement les coins de l'image */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Ombre légère autour du bloc */
-}
-/* Grand titre au-dessus de l'image */
-.hero-container h1 {
-    color: #ffffff;           /* Texte blanc */
-    font-size: 42px;          /* Grande taille d'écriture */
-    font-weight: 800;         /* Écriture très épaisse style Thumbtack */
-    margin-top: 0;
-    margin-bottom: 12px;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); /* Ombre sous le texte */
-} /* <-- L'ACCOLADE SE FERME BIEN ICI POUR LE TITRE */
-
-/* À LA LIGNE : On crée un bloc exprès pour l'image globale */
-.hero-container {
+    background-size: cover;       
+    background-position: center;  
+    
+    /* COINS ET TAILLE COMPACTE : Hauteur réduite pour que l'image reste petite */
+    padding: 65px 30px;           
+    border-radius: 12px;          
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
+    
+    /* Alignements et centrages du texte au milieu */
     display: flex;
-    flex-direction: column;   /* Aligne les éléments les uns sous les autres */
-    justify-content: center;  /* Centre verticalement le contenu */
-    align-items: center;      /* Centre horizontalement le contenu */
-    text-align: center;       /* Aligne les textes au milieu */
+    flex-direction: column;   
+    justify-content: center;  
+    align-items: center;      
+    text-align: center;       
 }
 
+.hero-container h1 {
+    color: #ffffff;           /* Écrit en blanc par-dessus l'image */
+    font-size: 38px;          
+    font-weight: 800;         
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour lire sans effort */
+}
 
+.hero-container p {
+    color: #ffffff;           /* Écrit en blanc par-dessus l'image */
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre pour lire sans effort */
+}
 
-/* Container pour aligner l'input et le bouton */
 .search-box {
     display: flex;
-    gap: 10px; /* Crée l'espace exact entre la case de texte et le bouton */
+    gap: 12px; /* Crée l'espace parfait de 12px entre l'input et le bouton */
 }
 
 /* ==========================================
-   4. FORMULAIRE DE RECHERCHE
+   4. INPUTS ET BOUTONS DE RECHERCHE
    ========================================== */
-/* La zone de texte (Input) */
 input[type="text"] {
     padding: 12px 16px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 280px;           /* Largeur confortable pour écrire */
+    width: 280px;           
     font-size: 16px;
-    outline: none;          /* Enlève la bordure noire au clic */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); /* Ombre douce sous l'input */
+    outline: none;          
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); 
 }
 
-/* Le bouton bleu (Find a pro) */
 #search-btn {
-    background-color: #0073ea; /* Bleu officiel Thumbtack */
-    color: white;              /* Texte blanc */
-    border: none;              /* Supprime les bordures grises d'origine */
-    padding: 12px 24px;        /* Taille interne du bouton */
-    font-weight: bold;         /* Texte en gras */
+    background-color: #0073ea; /* Bleu vif Thumbtack */
+    color: white;              
+    border: none;              
+    padding: 12px 24px;        
+    font-weight: bold;         
     font-size: 16px;
-    border-radius: 6px;        /* Coins arrondis */
-    cursor: pointer;           /* Curseur en forme de main cliquable */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); /* Ombre douce sous le bouton */
+    border-radius: 6px;        
+    cursor: pointer;           
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); 
 }
 
-/* Effet de survol sur le bouton */
 #search-btn:hover {
-    background-color: #0050a1; /* Le bleu devient plus foncé au survol */
-}
-.logo-text {
-    font-weight: 800;       /* Écriture très épaisse */
-    font-size: 24px;        /* Plus grand que le reste du menu */
-    color: #111e25;        /* Le noir très foncé officiel */
-    margin-right: 40px;     /* Crée un grand espace avec les liens à droite */
-}
-/* On transforme la barre de navigation en ligne Flexbox */
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Pousse le logo à gauche et les liens à droite */
-    align-items: center;            /* Aligne verticalement le logo et les liens */
-    margin-bottom: 15px;
-}
-.search-box {
-    display: flex;
-    gap: 12px; /* Crée l'espace de 12 pixels entre la case blanche et le bouton */
-    justify-content: center;
-}
-.hero-container p {
-    color: #ffffff;           /* Force le texte à s'écrire en blanc pur */
-    font-size: 19px;          /* Agrandit légèrement l'écriture */
-    font-weight: 500;         /* Donne une épaisseur moyenne aux lettres */
-    max-width: 600px;         /* Empêche le texte de s'étaler trop largement */
-    margin-bottom: 30px;      /* Crée un espace propre avec la barre de recherche en dessous */
-    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); /* Ajoute une ombre noire légère pour lire le texte sans effort */
-}
-/* Style du bouton Sign up dans la barre de navigation */
-#signup-nav-btn {
-    background-color: #f2f7fc; /* Un fond bleu-gris ultra-clair très doux */
-    color: #0073ea;            /* Le texte s'écrit en bleu vif */
-    border: none;              /* Pas de bordure brute */
-    padding: 8px 18px;         /* Espace interne pour lui donner une forme allongée */
-    font-weight: bold;         /* Écrit en gras comme sur l'image */
-    font-size: 15px;
-    border-radius: 20px;       /* Des coins très arrondis (effet "capsule") */
-    margin-left: 20px;         /* Décolle le bouton du mot Log in */
-    cursor: pointer;           /* Curseur main cliquable */
-}
-
-/* Petit effet quand la souris passe dessus */
-#signup-nav-btn:hover {
-    background-color: #e1eefc; /* Le fond devient un tout petit peu plus foncé au survol */
+    background-color: #0050a1; /* Devient bleu foncé au survol */
 }
