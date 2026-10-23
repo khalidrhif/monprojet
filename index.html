@@ -2,20 +2,20 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thumbtack - Accueil</title>
-    <!-- Connexion à la feuille de style externe -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Barre de navigation épurée du haut -->
     <div class="navbar">
-        <span class="logo-text">Thumbtack</span>
+        <span class="logo-text" onclick="window.location.href='index.html'" style="cursor: pointer;">Thumbtack</span>
         
         <div class="nav-links-right">
-            <a class="menu-link" href="./about.html">Explore</a>
-            <a class="menu-link" href="./join-pro.html">Join as a pro</a>
-            <a class="menu-link" href="./login.html">Log in</a>
+            <a class="menu-link" href="about.html">Explore</a>
+            <a class="menu-link" href="join-pro.html">Join as a pro</a>
+            <a class="menu-link" href="login.html">Log in</a>
             <button id="signup-nav-btn">Sign up</button>
         </div>
     </div>
@@ -34,5 +34,21 @@
         </div>
     </div>
 
+    <!-- Section des catégories populaires -->
+    <div class="categories-section">
+        <h2>Popular services</h2>
+        
+        <div class="categories-grid">
+            <button class="category-card">🧹 Cleaners</button>
+            <button class="category-card">🔨 Handymen</button>
+            <button class="category-card">🌱 Landscapers</button>
+            <button class="category-card">📦 Movers</button>
+        </div>
+
+        <p class="pros-location-text">Pros for every project in <span class="blue-location">Your Area</span>.</p>
+    </div>
+
+    <!-- Lien vers la logique JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

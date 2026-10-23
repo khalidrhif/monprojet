@@ -2,14 +2,39 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Thumbtack - Devenir Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbtack - Devenir Professionnel</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <a href="./index.html">Retour à l'accueil</a>
+    <!-- Retour rapide à l'accueil -->
+    <div class="navbar">
+        <span class="logo-text" onclick="window.location.href='./index.html'" style="cursor: pointer;">Thumbtack</span>
+        <div class="nav-links-right">
+            <a class="menu-link" href="./index.html">Accueil</a>
+        </div>
+    </div>
 
-    <h1>Join as a pro</h1>
-    <p>Inscrivez votre entreprise ici pour trouver des clients.</p>
+    <hr>
+
+    <!-- Zone de texte pour le début de la page Pro -->
+    <div class="hero-content">
+        <h1>Développez votre entreprise à Repentigny.</h1>
+        <p>Recevez des demandes de clients locaux prêts à commencer leurs projets.</p>
+    </div>
+    <!-- Formulaire d'inscription des Pros -->
+    <div class="pro-form-box">
+        <h3>Formulaire d'inscription</h3>
+        
+        <label for="pro-service">Votre métier / service :</label>
+        <input type="text" id="pro-service" placeholder="Ex: Électricien, Peintre...">
+
+        <label for="pro-phone">Numéro de téléphone :</label>
+        <input type="text" id="pro-phone" placeholder="Ex: 450-XXX-XXXX">
+
+        <button id="submit-pro-btn">Rejoindre la communauté</button>
+    </div>
 
 </body>
 </html>

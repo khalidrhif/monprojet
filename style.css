@@ -2,9 +2,9 @@
    1. STYLE GLOBAL DE LA PAGE (BODY)
    ========================================== */
 body {
-    background-color: #f7f9fa; /* Fond gris très clair moderne */
-    font-family: Arial, Helvetica, sans-serif; /* Écriture droite style Thumbtack */
-    padding: 40px; /* Espace de respiration sur les côtés de l'écran */
+    background-color: #f7f9fa; 
+    font-family: Arial, Helvetica, sans-serif; 
+    padding: 40px; 
     margin: 0;
 }
 
@@ -13,43 +13,43 @@ body {
    ========================================== */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pousse le logo à gauche et les liens à droite */
-    align-items: center;            /* Aligne verticalement les éléments */
+    justify-content: space-between; 
+    align-items: center;            
     margin-bottom: 15px;
 }
 
 .logo-text {
-    font-weight: 800;       /* Logo en gras et épais */
+    font-weight: 800;       
     font-size: 24px;        
-    color: #111e25;         /* Couleur bleu-noir très foncé officiel */
+    color: #111e25;         
 }
 
 .menu-link {
-    color: #676d73;        /* Gris doux très élégant */
-    text-decoration: none; /* Enlève le trait souligné */
-    margin-left: 24px;     /* Espace entre chaque lien */
-    font-weight: normal;   /* Écriture fine haut de gamme */
+    color: #676d73;        
+    text-decoration: none; 
+    margin-left: 24px;     
+    font-weight: normal;   
 }
 
 .menu-link:hover {
-    color: #111e25;            /* Devient foncé au survol de la souris */
-    text-decoration: underline; /* Le trait réapparaît discrètement au survol */
+    color: #111e25;            
+    text-decoration: underline; 
 }
 
 #signup-nav-btn {
-    background-color: #f2f7fc; /* Fond bleu-gris très clair */
-    color: #0073ea;            /* Texte écrit en bleu vif */
+    background-color: #f2f7fc; 
+    color: #0073ea;            
     border: none;              
     padding: 8px 18px;         
     font-weight: bold;         
     font-size: 15px;
-    border-radius: 20px;       /* Forme capsule ovale très arrondie */
+    border-radius: 20px;       
     margin-left: 20px;         
     cursor: pointer;           
 }
 
 #signup-nav-btn:hover {
-    background-color: #e1eefc; /* Devient un chouïa plus foncé au survol */
+    background-color: #e1eefc; 
 }
 
 hr {
@@ -66,13 +66,9 @@ hr {
     background-image: url("./salon.jpg");
     background-size: cover;       
     background-position: center;  
-    
-    /* COINS ET TAILLE COMPACTE : Hauteur réduite pour que l'image reste petite */
     padding: 65px 30px;           
     border-radius: 12px;          
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
-    
-    /* Alignements et centrages du texte au milieu */
     display: flex;
     flex-direction: column;   
     justify-content: center;  
@@ -81,24 +77,40 @@ hr {
 }
 
 .hero-container h1 {
-    color: #ffffff;           /* Écrit en blanc par-dessus l'image */
+    color: #ffffff;           
     font-size: 38px;          
     font-weight: 800;         
     margin-top: 0;
     margin-bottom: 10px;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour lire sans effort */
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-container p {
-    color: #ffffff;           /* Écrit en blanc par-dessus l'image */
+    color: #ffffff;           
     font-size: 18px;
     margin-bottom: 25px;
-    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre pour lire sans effort */
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); 
 }
 
 .search-box {
     display: flex;
-    gap: 12px; /* Crée l'espace parfait de 12px entre l'input et le bouton */
+    gap: 12px; 
+}
+
+.hero-content-pro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero-content-pro h1 {
+    color: #111e25;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.hero-content-pro p {
+    color: #676d73;
+    font-size: 18px;
 }
 
 /* ==========================================
@@ -115,7 +127,7 @@ input[type="text"] {
 }
 
 #search-btn {
-    background-color: #0073ea; /* Bleu vif Thumbtack */
+    background-color: #0073ea; 
     color: white;              
     border: none;              
     padding: 12px 24px;        
@@ -127,5 +139,111 @@ input[type="text"] {
 }
 
 #search-btn:hover {
-    background-color: #0050a1; /* Devient bleu foncé au survol */
+    background-color: #0050a1; 
+}
+
+/* ==========================================
+   5. SECTION CATÉGORIES
+   ========================================== */
+.categories-section {
+    margin-top: 40px; 
+}
+
+.categories-section h2 {
+    color: #111e25;   
+    font-size: 24px;
+    font-weight: 800;  
+    margin-bottom: 20px;
+}
+
+.categories-grid {
+    display: flex;
+    gap: 15px;       
+    flex-wrap: wrap; 
+}
+
+.category-card {
+    background-color: #ffffff; 
+    color: #111e25;            
+    border: 1px solid #e0e0e0; 
+    padding: 12px 20px;        
+    font-size: 16px;
+    font-weight: 600;          
+    border-radius: 8px;        
+    cursor: pointer;           
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.02); 
+}
+
+.category-card:hover {
+    background-color: #f7f9fa; 
+    border-color: #ccc;        
+}
+
+.pros-location-text {
+    text-align: center;       
+    color: #111e25;           
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 35px;         
+}
+
+.blue-location {
+    color: #0073ea;           
+    cursor: pointer;          
+}
+
+.blue-location:hover {
+    text-decoration: underline; 
+}
+
+/* ==========================================
+   6. FORMULAIRE D'INSCRIPTION DES PROS
+   ========================================== */
+.pro-form-box {
+    background-color: #ffffff;
+    max-width: 400px;
+    margin: 30px auto; 
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pro-form-box h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #111e25;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.pro-form-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #111e25;
+    font-size: 14px;
+}
+
+.pro-form-box input {
+    width: 100%;
+    box-sizing: border-box; 
+    margin-bottom: 20px;
+}
+
+#submit-pro-btn {
+    background-color: #0073ea;
+    color: white;
+    border: none;
+    width: 100%; 
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#submit-pro-btn:hover {
+    background-color: #0050a1;
 }
