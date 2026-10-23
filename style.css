@@ -6,3 +6,6 @@ p {
     color: black;
     font-size: 18px;
 }
+body {
+    background-color: #f7f9fa; /* C'est un gris très clair et moderne, comme sur Thumbtack */
+}
