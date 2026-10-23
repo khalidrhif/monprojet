@@ -32,3 +32,6 @@ p {
     cursor: pointer;
     border-radius: 6px; /* <-- Ajoutez simplement cette ligne ici */
 }
+#search-btn:hover {
+    background-color: #0050a1; /* Le bleu devient plus foncé au survol de la souris */
+}
