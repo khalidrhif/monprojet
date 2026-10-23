@@ -13,3 +13,9 @@ p {
     color: black;
     font-size: 18px;
 }
+.menu-link {
+    color: #0073ea;        /* Donne un joli bleu moderne aux liens */
+    text-decoration: none; /* Enlève le trait souligné sous le texte */
+    margin-right: 20px;    /* Crée un espace de 20 pixels entre chaque lien */
+    font-weight: bold;     /* Met le texte en gras pour qu'il ressorte bien */
+}
