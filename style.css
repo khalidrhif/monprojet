@@ -1,7 +1,9 @@
 body {
     background-color: #97cfeb;
     font-family: Arial, Helvetica, sans-serif; /* <-- AJOUTEZ CETTE LIGNE */
+    padding: 40px; /* <-- AJOUTEZ CETTE LIGNE (Crée un espace de 40 pixels sur tous les côtés) */
 }
+
 
 h1 {
     color: red;
