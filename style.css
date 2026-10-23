@@ -14,8 +14,21 @@ p {
     font-size: 18px;
 }
 .menu-link {
-    color: #0073ea;        /* Donne un joli bleu moderne aux liens */
+    color: #4a97e9;        /* Donne un joli bleu moderne aux liens */
     text-decoration: none; /* Enlève le trait souligné sous le texte */
     margin-right: 20px;    /* Crée un espace de 20 pixels entre chaque lien */
     font-weight: bold;     /* Met le texte en gras pour qu'il ressorte bien */
+}
+.menu-link:hover {
+    color: #0050a1;            /* Le bleu devient plus foncé quand la souris passe dessus */
+    text-decoration: underline; /* Le trait souligné réapparaît uniquement au survol */
+}
+#search-btn {
+    background-color: #0073ea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px; /* <-- Ajoutez simplement cette ligne ici */
 }
