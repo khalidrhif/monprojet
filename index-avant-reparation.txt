@@ -1,0 +1,189 @@
+<script>
+  const formulaire = document.querySelector('#recherche');
+  const message = document.querySelector('#message');
+  const mot = document.querySelector('#mot');
+  const ville = document.querySelector('#ville');
+  const boutonRecherche = formulaire.querySelector('button');
+
+  const sectionAnnuaire = document
+    .querySelector('#titre-annuaire')
+    .closest('section');
+
+  const resultats = document.createElement('div');
+  resultats.className = 'grille';
+  resultats.setAttribute('aria-label', 'Résultats de recherche');
+  sectionAnnuaire.append(resultats);
+
+  function ajouterTexte(parent, balise, texte) {
+    const element = document.createElement(balise);
+    element.textContent = texte;
+    parent.append(element);
+    return element;
+  }
+
+  function afficherCommerce(commerce) {
+    const carte = document.createElement('article');
+    carte.className = 'carte';
+
+    const contenu = document.createElement('div');
+    contenu.className = 'contenu';
+
+    ajouterTexte(
+      contenu,
+      'span',
+      commerce.categorie || 'Commerce'
+    ).className = 'etiquette';
+
+    ajouterTexte(contenu, 'h3', commerce.nom);
+
+    ajouterTexte(
+      contenu,
+      'p',
+      [
+        commerce.adresse,
+        commerce.ville,
+        commerce.codePostal
+      ].filter(Boolean).join(', ')
+    );
+
+    if (commerce.description) {
+      ajouterTexte(contenu, 'p', commerce.description);
+    }
+
+    if (commerce.telephone) {
+      ajouterTexte(
+        contenu,
+        'p',
+        `Téléphone : ${commerce.telephone}`
+      );
+    }
+
+    if (commerce.source) {
+      try {
+        const adresse = new URL(commerce.source);
+
+        if (['https:', 'http:'].includes(adresse.protocol)) {
+          const lien = document.createElement('a');
+          lien.href = adresse.href;
+          lien.textContent = 'Voir la source';
+          lien.target = '_blank';
+          lien.rel = 'noopener noreferrer';
+          contenu.append(lien);
+        }
+      } catch {
+        // Une source mal formée ne bloque pas la fiche.
+      }
+    }
+
+    if (commerce.attribution) {
+      ajouterTexte(
+        contenu,
+        'p',
+        commerce.attribution
+      ).className = 'note';
+    }
+
+    carte.append(contenu);
+    return carte;
+  }
+
+  formulaire.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    if (!ville.value.trim()) {
+      message.textContent = 'Indiquez une ville.';
+      ville.focus();
+      return;
+    }
+
+    boutonRecherche.disabled = true;
+    message.textContent = 'Recherche en cours…';
+    resultats.replaceChildren();
+
+    try {
+      const parametres = new URLSearchParams({
+        mot: mot.value.trim(),
+        ville: ville.value.trim()
+      });
+
+      const reponse = await fetch(
+        `/api/commerces?${parametres}`,
+        { signal: AbortSignal.timeout(30000) }
+      );
+
+      if (!reponse.ok) {
+        throw new Error('Recherche indisponible.');
+      }
+
+      const donnees = await reponse.json();
+
+      if (!Array.isArray(donnees.commerces)) {
+        throw new Error('Réponse invalide.');
+      }
+
+      const information =
+        sectionAnnuaire.querySelector('.information');
+
+      if (information) {
+        information.hidden = true;
+      }
+
+      if (donnees.commerces.length === 0) {
+        message.textContent =
+          'Aucun commerce approuvé ne correspond à cette recherche.';
+
+        ajouterTexte(
+          resultats,
+          'p',
+          'Les fiches en attente de vérification ne sont pas affichées.'
+        );
+      } else {
+        donnees.commerces.forEach(commerce => {
+          resultats.append(afficherCommerce(commerce));
+        });
+
+        message.textContent =
+          `${donnees.commerces.length} résultat(s) affiché(s), ` +
+          'dans la limite de 50.';
+      }
+
+      const mouvementReduit = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      sectionAnnuaire.scrollIntoView({
+        behavior: mouvementReduit ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    } catch {
+      message.textContent =
+        'Recherche impossible. Vérifiez que le serveur est démarré, puis réessayez.';
+    } finally {
+      boutonRecherche.disabled = false;
+    }
+  });
+
+  document.querySelectorAll('.categorie').forEach(bouton => {
+    bouton.addEventListener('click', () => {
+      document.querySelectorAll('.categorie').forEach(autre => {
+        autre.setAttribute(
+          'aria-pressed',
+          String(autre === bouton)
+        );
+      });
+
+      const categorie = bouton.dataset.categorie;
+
+      mot.value = categorie === 'Commerces'
+        ? ''
+        : categorie === 'Restaurants'
+          ? 'restaurant'
+          : categorie;
+
+      message.textContent =
+        'Cliquez sur Rechercher. Vous pouvez modifier le mot recherché.';
+
+      mot.focus();
+    });
+  });
+</script>

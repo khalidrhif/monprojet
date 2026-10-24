@@ -1,54 +1,749 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thumbtack - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repentigny — Commerces et vie locale</title>
+
+  <style>
+    :root {
+      --bleu: #0784bd;
+      --orange: #ff9300;
+      --texte: #17394c;
+    }
+
+    [hidden] { display: none !important; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .contenu { overflow-wrap: anywhere; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--texte);
+      background: #f7f9fb;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid #ffb52d;
+      outline-offset: 4px;
+    }
+
+    .apercu {
+      background: #e7f4fa;
+      padding: 9px 15px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e1e8ed;
+    }
+
+    .entete {
+      max-width: 1180px;
+      margin: auto;
+      padding: 25px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      color: var(--bleu);
+      font-size: 29px;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo small {
+      display: block;
+      margin-top: 7px;
+      color: #607885;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    nav a {
+      padding: 8px 0;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: var(--bleu);
+    }
+
+    .banniere {
+      min-height: 440px;
+      padding: 65px 20px 100px;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(110deg, #123f57bb, #123f5755),
+        url("images/repentigny.jpg") center / cover,
+        #286b86;
+    }
+
+    .surtitre {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      display: table;
+      margin: 22px auto 15px;
+      padding: 10px 18px;
+      background: var(--orange);
+      color: white;
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+
+    .sous-titre {
+      margin: 0 0 38px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    .recherche {
+      max-width: 970px;
+      margin: auto;
+      padding: 10px 12px 10px 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border-radius: 50px;
+      text-align: left;
+      box-shadow: 0 8px 30px #0002;
+    }
+
+    .champ {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .champ + .champ {
+      padding-left: 15px;
+      border-left: 1px solid #e0e7ec;
+    }
+
+    .champ span {
+      display: block;
+      padding-left: 12px;
+      color: #526d7b;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .champ input {
+      width: 100%;
+      min-width: 0;
+      padding: 11px 12px;
+      border: 0;
+      background: white;
+      color: var(--texte);
+    }
+
+    .recherche button {
+      padding: 17px 23px;
+      border: 0;
+      border-radius: 30px;
+      background: var(--orange);
+      color: #17394c;
+      font-weight: bold;
+    }
+
+    .recherche button:hover {
+      background: #ffac2b;
+    }
+
+    #message {
+      max-width: 900px;
+      margin: 18px auto 0;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 20px 60px;
+    }
+
+    .categories {
+      position: relative;
+      margin-top: -45px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .categorie {
+      min-height: 120px;
+      padding: 20px 10px;
+      border: 0;
+      border-radius: 7px;
+      font-weight: bold;
+      line-height: 1.5;
+      box-shadow: 0 8px 20px #17364b25;
+    }
+
+    .icone {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+
+    .categorie:nth-child(1) {
+      background: white;
+      color: #955100;
+    }
+
+    .categorie:nth-child(2) {
+      background: #ffbf00;
+      color: #433500;
+    }
+
+    .categorie:nth-child(3) {
+      background: #cd3045;
+      color: white;
+    }
+
+    .categorie:nth-child(4) {
+      background: #21893e;
+      color: white;
+    }
+
+    .categorie:hover,
+    .categorie[aria-pressed="true"] {
+      outline: 3px solid var(--texte);
+      outline-offset: 2px;
+    }
+
+    .note {
+      color: #607784;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .bandeau {
+      margin: 38px 0 24px;
+      padding: 17px 22px;
+      color: white;
+      background: linear-gradient(#159acf, #007eb8);
+      font-size: 23px;
+      font-weight: normal;
+    }
+
+    .grille {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .carte {
+      overflow: hidden;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 5px 20px #17364b15;
+    }
+
+    .photo {
+      min-height: 225px;
+      padding: 30px;
+      display: grid;
+      place-items: center;
+      background: #e3edf2;
+      color: #476b7e;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .photo-commerce {
+      background: #f4ece2;
+    }
+
+    .photo-evenement {
+      background: #e6eee3;
+    }
+
+    .contenu {
+      padding: 25px;
+    }
+
+    .etiquette {
+      color: #607784;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .carte h3 {
+      margin: 14px 0;
+      color: #0878aa;
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: normal;
+    }
+
+    .carte p {
+      color: #5c7380;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .information {
+      padding: 28px;
+      border-left: 4px solid var(--bleu);
+      border-radius: 9px;
+      background: white;
+      line-height: 1.8;
+    }
+
+    .information h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    footer {
+      padding: 30px 20px;
+      border-top: 1px solid #e0e8ec;
+      background: white;
+      color: #617985;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 850px) {
+      .entete {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .grille {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .categories {
+        gap: 12px;
+      }
+
+      .categorie {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 0 16px 35px;
+      }
+
+      .entete {
+        padding: 22px 16px;
+      }
+
+      nav {
+        gap: 18px;
+      }
+
+      .banniere {
+        padding: 35px 16px 75px;
+      }
+
+      .sous-titre {
+        font-size: 18px;
+      }
+
+      .recherche {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        border-radius: 15px;
+      }
+
+      .champ + .champ {
+        padding: 12px 0 0;
+        border-left: 0;
+        border-top: 1px solid #e0e7ec;
+      }
+
+      .recherche button {
+        width: 100%;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: -30px;
+        gap: 14px;
+      }
+
+      .categorie {
+        font-size: 13px;
+      }
+
+      .grille {
+        grid-template-columns: 1fr;
+      }
+
+      .bandeau {
+        padding: 16px 18px;
+        font-size: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="apercu">
+    Maquette de travail — nom provisoire et contenus à connecter
+  </div>
 
-    <!-- Barre de navigation épurée du haut -->
-    <div class="navbar">
-        <span class="logo-text" onclick="window.location.href='index.html'" style="cursor: pointer;">Thumbtack</span>
-        
-        <div class="nav-links-right">
-            <a class="menu-link" href="about.html">Explore</a>
-            <a class="menu-link" href="join-pro.html">Join as a pro</a>
-            <a class="menu-link" href="login.html">Log in</a>
-            <button id="signup-nav-btn">Sign up</button>
-        </div>
+  <header>
+    <div class="entete">
+      <a class="logo" href="#accueil">
+        REPENTIGNY
+        <small>Commerces & vie locale</small>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <a href="#commerces">Annuaire</a>
+        <a href="#actualites">À la une</a>
+        <a href="#evenements">Événements</a>
+      </nav>
     </div>
+  </header>
 
-    <hr>
+  <section
+    class="banniere"
+    id="accueil"
+    aria-labelledby="titre"
+  >
+    <span class="surtitre">Découvrez votre ville</span>
 
-    <!-- Section principale : L'écriture est positionnée par-dessus l'image -->
-    <div class="hero-container">
-        <h1>For everything home could be.</h1>
-        <p>Find local pros for repairs, upgrades, and projects big or small — all in one place.</p>
-        
-        <!-- Boîte de recherche alignée -->
-        <div class="search-box">
-            <input type="text" placeholder="Describe your project or problem...">
-            <button id="search-btn">Find a pro</button>
-        </div>
-    </div>
+    <h1 id="titre">AUTOUR DE MOI</h1>
 
-    <!-- Section des catégories populaires -->
-    <div class="categories-section">
-        <h2>Popular services</h2>
-        
-        <div class="categories-grid">
-            <button class="category-card">🧹 Cleaners</button>
-            <button class="category-card">🔨 Handymen</button>
-            <button class="category-card">🌱 Landscapers</button>
-            <button class="category-card">📦 Movers</button>
-        </div>
+    <p class="sous-titre">
+      Vos commerces et professionnels à Repentigny
+    </p>
 
-        <p class="pros-location-text">Pros for every project in <span class="blue-location">Your Area</span>.</p>
-    </div>
+    <form class="recherche" id="recherche">
+      <label class="champ" for="mot">
+        <span>Quoi ?</span>
+        <input
+          id="mot"
+          type="search"
+          placeholder="Que cherchez-vous ?"
+        >
+      </label>
 
-    <!-- Lien vers la logique JavaScript -->
-    <script src="script.js"></script>
+      <label class="champ" for="ville">
+        <span>Où ?</span>
+        <input
+          id="ville"
+          type="text"
+          value="Repentigny"
+          placeholder="Ville"
+        >
+      </label>
+
+      <button type="submit">Rechercher</button>
+    </form>
+
+    <p id="message" role="status" aria-live="polite"></p>
+  </section>
+
+  <main>
+    <section
+      id="commerces"
+      aria-label="Catégories de commerces"
+    >
+      <div class="categories">
+        <button
+          class="categorie"
+          type="button"
+          data-categorie="Commerces"
+          aria-pressed="false"
+        >
+          <span class="icone" aria-hidden="true">🛒</span>
+          COMMERCES
+        </button>
+
+        <button
+          class="categorie"
+          type="button"
+          data-categorie="Beauté et bien-être"
+          aria-pressed="false"
+        >
+          <span class="icone" aria-hidden="true">☀</span>
+          BEAUTÉ ET BIEN-ÊTRE
+        </button>
+
+        <button
+          class="categorie"
+          type="button"
+          data-categorie="Restaurants"
+          aria-pressed="false"
+        >
+          <span class="icone" aria-hidden="true">🍴</span>
+          RESTAURANTS
+        </button>
+
+        <button
+          class="categorie"
+          type="button"
+          data-categorie="Sorties et loisirs"
+          aria-pressed="false"
+        >
+          <span class="icone" aria-hidden="true">🎭</span>
+          SORTIES ET LOISIRS
+        </button>
+      </div>
+
+      <p class="note">
+        Choisissez une catégorie ou utilisez la recherche.
+        La recherche affiche les fiches approuvées de l’annuaire. Les boutons proposent un mot de recherche modifiable.
+      </p>
+    </section>
+
+    <section
+      id="actualites"
+      aria-labelledby="titre-actualites"
+    >
+      <h2 class="bandeau" id="titre-actualites">
+        À LA UNE À REPENTIGNY
+      </h2>
+
+      <div class="grille">
+        <article class="carte">
+          <div class="photo">
+            Photo locale à ajouter
+          </div>
+
+          <div class="contenu">
+            <span class="etiquette">
+              Emplacement de démonstration
+            </span>
+
+            <h3>Les nouvelles de votre ville</h3>
+
+            <p>
+              Les actualités validées apparaîtront ici,
+              avec leur date, leur source et un lien
+              vers la publication d’origine.
+            </p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="photo photo-commerce">
+            Photo de commerce à ajouter
+          </div>
+
+          <div class="contenu">
+            <span class="etiquette">
+              Emplacement de démonstration
+            </span>
+
+            <h3>Découvrez les commerces près de chez vous</h3>
+
+            <p>
+              Un espace pour les ouvertures et les initiatives
+              des entrepreneurs de Repentigny.
+            </p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="photo photo-evenement">
+            Photo d’événement à ajouter
+          </div>
+
+          <div class="contenu">
+            <span class="etiquette">
+              Emplacement de démonstration
+            </span>
+
+            <h3>Des idées pour vos prochaines sorties</h3>
+
+            <p>
+              Les événements vérifiés seront présentés
+              avec leurs dates, leurs lieux
+              et le lien de l’organisateur.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="titre-annuaire">
+      <h2 class="bandeau" id="titre-annuaire">
+        VOTRE ANNUAIRE LOCAL
+      </h2>
+
+      <div class="information">
+        <h3>Les commerces de Repentigny, réunis ici.</h3>
+
+        Utilisez la recherche en haut de page pour consulter les commerces approuvés. Laissez « Quoi ? » vide pour rechercher tous les commerces de la ville (50 résultats maximum).
+      </div>
+    </section>
+
+    <section
+      id="evenements"
+      aria-labelledby="titre-evenements"
+    >
+      <h2 class="bandeau" id="titre-evenements">
+        LES ÉVÉNEMENTS
+      </h2>
+
+      <div class="information">
+        <h3>Un agenda pour votre ville.</h3>
+
+        Marchés, activités et rencontres :
+        cette rubrique accueillera les événements vérifiés.
+        Aucun événement réel n’est encore publié
+        dans cette maquette.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Repentigny — Commerces & vie locale<br>
+    Maquette en construction
+  </footer>
+
+  <script>
+    const formulaire = document.querySelector('#recherche');
+    const mot = document.querySelector('#mot');
+    const ville = document.querySelector('#ville');
+    const message = document.querySelector('#message');
+    const bouton = formulaire.querySelector('button');
+    const section = document.querySelector('#titre-annuaire').closest('section');
+    const liste = document.createElement('div');
+    liste.className = 'grille';
+    section.append(liste);
+
+    function texte(parent, balise, valeur) {
+      const element = document.createElement(balise);
+      element.textContent = valeur;
+      parent.append(element);
+      return element;
+    }
+
+    function carte(commerce) {
+      const article = document.createElement('article');
+      article.className = 'carte';
+      const contenu = document.createElement('div');
+      contenu.className = 'contenu';
+      texte(contenu, 'span', commerce.categorie || 'Commerce').className = 'etiquette';
+      texte(contenu, 'h3', commerce.nom);
+      texte(contenu, 'p', [commerce.adresse, commerce.ville, commerce.codePostal].filter(Boolean).join(', '));
+      if (commerce.description) texte(contenu, 'p', commerce.description);
+      if (commerce.telephone) texte(contenu, 'p', 'Téléphone : ' + commerce.telephone);
+      for (const [valeur, titre] of [[commerce.siteWeb, 'Site Internet'], [commerce.source, 'Voir la source']]) {
+        if (!valeur) continue;
+        try {
+          const url = new URL(valeur);
+          if (!['https:', 'http:'].includes(url.protocol)) continue;
+          const paragraphe = document.createElement('p');
+          const lien = texte(paragraphe, 'a', titre);
+          lien.href = url.href;
+          lien.target = '_blank';
+          lien.rel = 'noopener noreferrer';
+          contenu.append(paragraphe);
+        } catch {}
+      }
+      if (commerce.attribution) texte(contenu, 'p', commerce.attribution).className = 'note';
+      article.append(contenu);
+      return article;
+    }
+
+    formulaire.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!ville.value.trim()) {
+        message.textContent = 'Indiquez une ville.';
+        ville.focus();
+        return;
+      }
+      bouton.disabled = true;
+      liste.setAttribute('aria-busy', 'true');
+      message.textContent = 'Recherche en cours…';
+      liste.replaceChildren();
+      const information = section.querySelector('.information');
+      information.hidden = true;
+      try {
+        const parametres = new URLSearchParams({mot: mot.value.trim(), ville: ville.value.trim()});
+        const reponse = await fetch('/api/commerces?' + parametres, {signal: AbortSignal.timeout(30000)});
+        if (!reponse.ok) throw new Error('Recherche indisponible');
+        const donnees = await reponse.json();
+        if (!Array.isArray(donnees.commerces)) throw new Error('Réponse invalide');
+        donnees.commerces.forEach(commerce => liste.append(carte(commerce)));
+        const bilan = donnees.commerces.length
+          ? donnees.commerces.length + ' résultat(s) affiché(s), dans la limite de 50.'
+          : 'Aucun commerce approuvé ne correspond à cette recherche. Les fiches en attente de vérification ne sont pas affichées.';
+        message.textContent = bilan;
+        texte(liste, 'p', bilan).className = 'note';
+        section.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+      } catch {
+        message.textContent = 'Recherche impossible. Ouvrez le site sur http://127.0.0.1:3000 et vérifiez que le serveur fonctionne.';
+        texte(liste, 'p', message.textContent);
+      } finally {
+        bouton.disabled = false;
+        liste.setAttribute('aria-busy', 'false');
+      }
+    });
+
+    document.querySelectorAll('.categorie').forEach(categorie => {
+      categorie.addEventListener('click', () => {
+        document.querySelectorAll('.categorie').forEach(autre => autre.setAttribute('aria-pressed', String(autre === categorie)));
+        const choix = categorie.dataset.categorie;
+        mot.value = choix === 'Commerces' ? '' : choix === 'Restaurants' ? 'restaurant' : choix === 'Beauté et bien-être' ? 'coiffure' : 'loisir';
+        message.textContent = 'Mot proposé : ' + (mot.value || 'tous les commerces') + '. Vous pouvez le modifier puis cliquer sur Rechercher.';
+        mot.focus();
+      });
+    });
+  </script>
 </body>
 </html>
